@@ -1,0 +1,90 @@
+<odoo>
+  <data>
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="action_lista_tareas">
+      <field name="name">Listado de tareas pendientes</field>
+      <field name="res_model">lista_tareas.lista</field>
+      <field name="view_mode">calendar,kanban,tree,form</field>
+      
+    </record>
+    
+    <!-- Top menu item -->
+    <menuitem name="Listado de tareas" id="lista_tareas.menu_root"/>
+
+    <!-- menu categories -->
+    <menuitem name="Opciones Lista Tareas" id="lista_tareas.menu_1" parent="lista_tareas.menu_root"/>
+
+    <!-- actions -->
+    <menuitem name="Mostrar lista" id="lista_tareas.menu_1_list" parent="lista_tareas.menu_1"
+              action="action_lista_tareas"/>
+
+    <!-- Vista Arbol -->
+    <record model="ir.ui.view" id="lista_tareas">
+      <field name="name">Lista de tareas</field>
+      <field name="model">lista_tareas.lista</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="tarea"/>
+          <field name="prioridad"/>
+          <field name="urgente"/>
+          <field name="realizada"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Vista Formulario -->
+    <record model="ir.ui.view" id="lista_tareas_form">
+      <field name="name">Lista de tareas</field>
+      <field name="model">lista_tareas.lista</field>
+      <field name="arch" type="xml">
+        <form>
+          <group>
+            <group>
+              <field name="tarea"/>
+              <field name="prioridad"/>
+              <field name="fecha"/>
+            </group>
+            <group>
+              <field name="urgente"/>
+              <field name="realizada"/>
+              <field name="imagen" widget="image" class="oe_avatar"/>
+            </group>
+          </group>
+        </form>
+      </field>
+    </record>
+
+    <!-- Vista Kanban -->
+    <record model="ir.ui.view" id="lista_tareas_kanban">
+      <field name="name">Lista de tareas</field>
+      <field name="model">lista_tareas.lista</field>
+      <field name="arch" type="xml">      
+        <kanban default_group_by="prioridad_con_texto" >
+          <field name="prioridad_con_texto" drag_group="1"/>
+            <templates>
+              <t t-name="kanban-box">
+                <div class="oe_kanban_card oe_kanban_global_click" style="width: 20mm; height: 20mm;">
+                  <field name="tarea" />
+                </div>
+                <div class="o_kanban_image_inner_pic" style="width: 20mm; height: 20mm;">
+                  <img alt="Avatar" t-att-src="kanban_image('lista_tareas.lista', 'imagen', record.id.raw_value)" style="width:100%; height:100%;" />
+                </div>
+              </t>
+            </templates>
+        </kanban>
+      </field>
+    </record>
+
+    <!-- Calendario -->
+    <record id="lista_tareas_calendar" model="ir.ui.view">
+        <field name="name">Lista de tareas</field>
+        <field name="model">lista_tareas.lista</field>
+        <field name="arch" type="xml">
+            <calendar date_start="fecha" date_stop="fecha" color="urgente">
+                <field name="tarea" />
+            </calendar>
+        </field>
+    </record>
+
+  </data>
+</odoo>
