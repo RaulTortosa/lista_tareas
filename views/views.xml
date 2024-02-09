@@ -82,8 +82,8 @@
         <field name="name">Lista de tareas</field>
         <field name="model">lista_tareas.lista</field>
         <field name="arch" type="xml">
-            <calendar date_start="fechaInicio" date_stop="fechaFin" color="urgente">
-            <!-- <calendar date_start="fechaInicio" date_delay="duracion" color="urgente" mode="month"> -->
+            <calendar date_start="fechaInicio" date_stop="fechaFin" color="urgente" mode="month"> <!-- Modo fecha inicio y fin -->
+            <!-- <calendar date_start="fechaInicio" date_delay="duracion" color="urgente" mode="month"> --> <!-- Modo fecha inicio y duracion -->
                 <field name="tarea" />
             </calendar>
         </field>
