@@ -23,6 +23,7 @@ class lista_tareas(models.Model):
     """ Campo computado para que aparezca en el titulo de las columnas kanban 'Prioridad y el valor' """
     prioridad_con_texto = fields.Char(compute='_compute_prioridad_con_texto', store=True)
 
+    """ Funcion del campo prioridad_con_texto """
     @api.depends('prioridad')
     def _compute_prioridad_con_texto(self):
         for record in self:
