@@ -12,11 +12,15 @@ class lista_tareas(models.Model):
     urgente = fields.Boolean(compute="_value_urgente", store=True)
     realizada = fields.Boolean()
     
+    """ Campos para las fechas de inicio y fin """
     fechaInicio = fields.Datetime(string="Fecha y Hora de inicio")
     fechaFin = fields.Datetime(string="Fecha y Hora de finalizacion")
+    """ Campos para la duracion de la tarea """
     duracion = fields.Float("Duración (en horas)")
+    """ Campos para la imagen """
     imagen = fields.Binary('Imagen de la tarea')
 
+    """ Campo computado para que aparezca en el titulo de las columnas kanban 'Prioridad y el valor' """
     prioridad_con_texto = fields.Char(compute='_compute_prioridad_con_texto', store=True)
 
     @api.depends('prioridad')

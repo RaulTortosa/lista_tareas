@@ -4,7 +4,7 @@
     <record model="ir.actions.act_window" id="action_lista_tareas">
       <field name="name">Listado de tareas pendientes</field>
       <field name="res_model">lista_tareas.lista</field>
-      <field name="view_mode">calendar,kanban,tree,form</field>
+      <field name="view_mode">calendar,kanban,tree,form</field> <!-- Modelos de vista que tenemos -->
       
     </record>
     
@@ -61,14 +61,14 @@
       <field name="name">Lista de tareas</field>
       <field name="model">lista_tareas.lista</field>
       <field name="arch" type="xml">      
-        <kanban default_group_by="prioridad_con_texto" >
-          <field name="prioridad_con_texto"/>
+        <kanban default_group_by="prioridad_con_texto" > <!-- Definicion de la vista kanban y porque campo se va a ordenar -->
+          <field name="prioridad_con_texto"/> 
             <templates>
-              <t t-name="kanban-box">
+              <t t-name="kanban-box"> <!-- Caja kanban que contendra la tarea -->
                 <div class="oe_kanban_card oe_kanban_global_click" style="width: 20mm; height: 20mm;">
                   <field name="tarea" />
                 </div>
-                <div class="o_kanban_image_inner_pic" style="width: 20mm; height: 20mm;">
+                <div class="o_kanban_image_inner_pic" style="width: 20mm; height: 20mm;"> <!-- Imagen kanban que contrendra la imagen -->
                   <img alt="Avatar" t-att-src="kanban_image('lista_tareas.lista', 'imagen', record.id.raw_value)" style="width:100%; height:100%;" />
                 </div>
               </t>
