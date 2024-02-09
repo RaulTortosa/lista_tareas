@@ -42,11 +42,13 @@
             <group>
               <field name="tarea"/>
               <field name="prioridad"/>
-              <field name="fecha"/>
+              <field name="fechaInicio"/>
             </group>
             <group>
               <field name="urgente"/>
               <field name="realizada"/>
+               <field name="fechaFin"/> 
+              <!-- <field name="duracion"/> -->
               <field name="imagen" widget="image" class="oe_avatar"/>
             </group>
           </group>
@@ -60,7 +62,7 @@
       <field name="model">lista_tareas.lista</field>
       <field name="arch" type="xml">      
         <kanban default_group_by="prioridad_con_texto" >
-          <field name="prioridad_con_texto" drag_group="1"/>
+          <field name="prioridad_con_texto"/>
             <templates>
               <t t-name="kanban-box">
                 <div class="oe_kanban_card oe_kanban_global_click" style="width: 20mm; height: 20mm;">
@@ -80,7 +82,8 @@
         <field name="name">Lista de tareas</field>
         <field name="model">lista_tareas.lista</field>
         <field name="arch" type="xml">
-            <calendar date_start="fecha" date_stop="fecha" color="urgente">
+            <calendar date_start="fechaInicio" date_stop="fechaFin" color="urgente">
+            <!-- <calendar date_start="fechaInicio" date_delay="duracion" color="urgente" mode="month"> -->
                 <field name="tarea" />
             </calendar>
         </field>

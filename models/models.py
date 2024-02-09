@@ -7,12 +7,15 @@ class lista_tareas(models.Model):
     _description = 'Modelo de la lista de tareas'
     _rec_name="tarea"
 
-    tarea = fields.Char()
-    prioridad = fields.Integer()
+    tarea = fields.Char("Nombre")
+    prioridad = fields.Integer("Nivel de prioridad")
     urgente = fields.Boolean(compute="_value_urgente", store=True)
     realizada = fields.Boolean()
-    fecha = fields.Datetime(string="Fecha y Hora")
-    imagen = fields.Binary('Portada Comic')
+    
+    fechaInicio = fields.Datetime(string="Fecha y Hora de inicio")
+    fechaFin = fields.Datetime(string="Fecha y Hora de finalizacion")
+    duracion = fields.Float("Duración (en horas)")
+    imagen = fields.Binary('Imagen de la tarea')
 
     prioridad_con_texto = fields.Char(compute='_compute_prioridad_con_texto', store=True)
 

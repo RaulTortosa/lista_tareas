@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-{
+{ 
     'name': "Lista de tareas",
 
     'summary': "Sencilla lista de tareas",
